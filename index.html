@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kishore Parcel Service</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --primary-blue: #1a73e8;
+            --secondary-blue: #4285f4;
+            --light-blue: #e8f0fe;
+            --white: #ffffff;
+            --dark-text: #333333;
+            --light-text: #666666;
+            --footer-bg: #f5f5f5;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background-color: var(--light-blue);
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            width: 50%;
+            z-index: 2;
+            padding-left: 5%;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--light-text);
+            max-width: 500px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-blue);
+        }
+
+        /* Animation for background */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .moving-box {
+            position: absolute;
+            background-color: rgba(26, 115, 232, 0.1);
+            border-radius: 10px;
+            animation: float 15s infinite linear;
+        }
+
+        .box1 {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .box2 {
+            width: 150px;
+            height: 150px;
+            top: 40%;
+            left: 30%;
+            animation-delay: 2s;
+        }
+
+        .box3 {
+            width: 80px;
+            height: 80px;
+            top: 70%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .box4 {
+            width: 120px;
+            height: 120px;
+            top: 20%;
+            left: 60%;
+            animation-delay: 6s;
+        }
+
+        .box5 {
+            width: 90px;
+            height: 90px;
+            top: 60%;
+            left: 70%;
+            animation-delay: 8s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50px, 50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(100px, 0) rotate(180deg);
+            }
+            75% {
+                transform: translate(50px, -50px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-blue);
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 30px;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--light-text);
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Clients Section */
+        .clients {
+            padding: 80px 0;
+            background-color: var(--light-blue);
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .client-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .client-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .client-logo {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .client-logo img {
+            max-width: 100%;
+            max-height: 100px;
+        }
+
+        .client-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .client-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .client-info p {
+            margin-bottom: 15px;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        .details-btn {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .details-btn:hover {
+            background-color: var(--secondary-blue);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 30px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+        }
+
+        .info-item {
+            margin-bottom: 20px;
+        }
+
+        .info-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--dark-text);
+        }
+
+        .info-item p {
+            color: var(--light-text);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .hero-content {
+                width: 100%;
+                padding: 0 20px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .animated-bg {
+                width: 100%;
+                opacity: 0.3;
+            }
+
+            .about-text, .about-image {
+                flex: 100%;
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .contact-info, .contact-form {
+                flex: 100%;
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="/api/placeholder/200/100" alt="Kishore Parcel Service Logo">
+                    <div class="logo-text">Kishore Parcel Service</div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-btn">☰</div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Your Trusted Delivery Partner</h1>
+            <p>At Kishore Parcel Service, we ensure safe and timely delivery of your packages with our extensive network and professional service.</p>
+            <a href="#contact" class="btn">Get in Touch</a>
+        </div>
+        <div class="animated-bg">
+            <div class="moving-box box1"></div>
+            <div class="moving-box box2"></div>
+            <div class="moving-box box3"></div>
+            <div class="moving-box box4"></div>
+            <div class="moving-box box5"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Delivering Excellence Since 2010</h3>
+                    <p>Kishore Parcel Service is a premier courier and logistics company dedicated to providing reliable and efficient delivery solutions. With years of experience in the industry, we have built a reputation for excellence and trust.</p>
+                    <p>Our team of professionals works tirelessly to ensure that your packages reach their destination safely and on time. We leverage cutting-edge technology and an extensive network to offer seamless delivery services across the country and beyond.</p>
+                    <p>Whether you're an individual sending a gift to a loved one or a business needing regular shipment services, we have tailored solutions to meet your specific needs.</p>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/500/300" alt="About Kishore Parcel Service">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="clients">
+        <div class="container">
+            <h2 class="section-title">Our Clients</h2>
+            <div class="clients-grid">
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="/api/placeholder/200/100" alt="FedEx Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>FedEx</h3>
+                        <p>Global leader in express transportation and logistics solutions.</p>
+                        <a href="https://www.fedex.com" class="details-btn" target="_blank">Details</a>
+                    </div>
+                </div>
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="/api/placeholder/200/100" alt="Trackon Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>Trackon</h3>
+                        <p>Premier express logistics and supply chain solutions company.</p>
+                        <a href="https://www.trackon.in" class="details-btn" target="_blank">Details</a>
+                    </div>
+                </div>
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="/api/placeholder/200/100" alt="DHL Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>DHL</h3>
+                        <p>International express, overland transport, and air freight services.</p>
+                        <a href="https://www.dhl.com" class="details-btn" target="_blank">Details</a>
+                    </div>
+                </div>
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="/api/placeholder/200/100" alt="RIVIGO Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>RIVIGO</h3>
+                        <p>Technology-enabled logistics company revolutionizing freight transport.</p>
+                        <a href="https://www.rivigo.com" class="details-btn" target="_blank">Details</a>
+                    </div>
+                </div>
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="/api/placeholder/200/100" alt="DP World Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>DP World</h3>
+                        <p>Global trade enabler specializing in cargo logistics and port terminal operations.</p>
+                        <a href="https://www.dpworld.com" class="details-btn" target="_blank">Details</a>
+                    </div>
+                </div>
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="/api/placeholder/200/100" alt="ST Courier Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>ST Courier</h3>
+                        <p>Reliable courier service for domestic and international shipments.</p>
+                        <a href="https://www.stcourier.com" class="details-btn" target="_blank">Details</a>
+                    </div>
+                </div>
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="/api/placeholder/200/100" alt="Professional Courier Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>Professional Courier</h3>
+                        <p>Leading courier company with extensive network across regions.</p>
+                        <a href="https://www.professionalcourier.in" class="details-btn" target="_blank">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="info-item">
+                        <h4>Address</h4>
+                        <p>123 Logistics Park, Main Street</p>
+                        <p>Bengaluru, Karnataka 560001</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Phone</h4>
+                        <p>Office: +91 80 1234 5678</p>
+                        <p>Customer Support: +91 98765 43210</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Email</h4>
+                        <p>info@kishoreparcelservice.com</p>
+                        <p>support@kishoreparcelservice.com</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Business Hours</h4>
+                        <p>Monday - Saturday: 9:00 AM - 8:00 PM</p>
+                        <p>Sunday: 10:00 AM - 4:00 PM</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Owner</h4>
+                        <p>Mr. Kishore Kumar</p>
+                        <p>Director, Kishore Parcel Service</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kishore Parcel Service</h3>
+                    <p>Your trusted partner for all your delivery needs. We ensure safe and timely delivery of your packages across the nation.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#home" style="color: white; text-decoration: none;">Home</a></p>
+                    <p><a href="#about" style="color: white; text-decoration: none;">About</a></p>
+                    <p><a href="#clients" style="color: white; text-decoration: none;">Clients</a></p>
+                    <p><a href="#contact" style="color: white; text-decoration: none;">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>123 Logistics Park, Main Street</p>
+                    <p>Bengaluru, Karnataka 560001</p>
+                    <p>Phone: +91 80 1234 5678</p>
+                    <p>Email: info@kishoreparcelservice.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kishore Parcel Service. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+        navLinksItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission handling (placeholder)
+        const contactForm = document.querySelector('.contact-form form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        }
+
+        // Animation for boxes to make them more dynamic
+        const boxes = document.querySelectorAll('.moving-box');
+        boxes.forEach(box => {
+            // Add random opacity changes
+            const randomDuration = Math.random() * 5 + 5; // Between 5-10s
+            box.style.animation = `float ${randomDuration}s infinite linear`;
+            
+            // Add random starting positions within constraints
+            const randomTop = Math.random() * 80 + 10; // Between 10-90%
+            const randomLeft = Math.random() * 80 + 10; // Between 10-90%
+            box.style.top = `${randomTop}%`;
+            box.style.left = `${randomLeft}%`;
+        });
+
+        // Add scroll animation for elements
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialize sections with opacity 0 and translate for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section:not(.hero)');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            // Trigger scroll event to check initial visible sections
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+</body>
+</html>
