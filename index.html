@@ -1186,6 +1186,76 @@
                 font-size: 0.75rem;
             }
         }
+        .thank-you-popup {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .thank-you-popup.show {
+            display: flex;
+        }
+        
+        .thank-you-box {
+            background: white;
+            width: 90%;
+            max-width: 450px;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            animation: popupShow 0.3s ease;
+        }
+        
+        .thank-you-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #06b6d4);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .thank-you-box h2 {
+            margin-bottom: 0.75rem;
+            color: #1f2937;
+        }
+        
+        .thank-you-box p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .thank-you-close {
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, #2563eb, #06b6d4);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        @keyframes popupShow {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+        
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 <body>
@@ -1567,7 +1637,32 @@
             </div>
         </div>
     </footer>
+<div id="thankYouPopup" class="thank-you-popup">
 
+    <div class="thank-you-box">
+
+        <div class="thank-you-icon">
+            ✓
+        </div>
+
+        <h2>Thank You!</h2>
+
+        <p>
+            Thanks for reaching out to us.
+            Your message has been prepared in your email.
+            Please click <strong>Send</strong> to complete your enquiry.
+            We will get back to you soon.
+        </p>
+
+        <button
+            class="thank-you-close"
+            onclick="closeThankYouPopup()">
+            Close
+        </button>
+
+    </div>
+
+</div>
     <script>
         // Scroll to section function
         function scrollToSection(id) {
@@ -1618,8 +1713,7 @@
         
             const emailSubject = `Website Contact: ${subject}`;
         
-            const emailBody = `
-        New message from Kishore Parcel Service website
+            const emailBody = `New message from Kishore Parcel Service website
         
         Name: ${name}
         Email: ${email}
@@ -1627,16 +1721,24 @@
         Subject: ${subject}
         
         Message:
-        ${message}
-        `;
+        ${message}`;
         
-            const mailto =
-                `mailto:kishoreparcelservice@yahoo.co.in` +
-                `?cc=dhivakarank813@gmail.com` +
-                `&subject=${encodeURIComponent(emailSubject)}` +
-                `&body=${encodeURIComponent(emailBody)}`;
+            const gmailUrl =
+                "https://mail.google.com/mail/?view=cm" +
+                "&to=" + encodeURIComponent("kishoreparcelservice@yahoo.co.in") +
+                "&cc=" + encodeURIComponent("dhivakarank813@gmail.com") +
+                "&su=" + encodeURIComponent(emailSubject) +
+                "&body=" + encodeURIComponent(emailBody);
         
-            window.location.href = mailto;
+            // Show confirmation popup
+            showThankYouPopup();
+        
+            // Open Gmail compose
+            setTimeout(() => {
+                window.open(gmailUrl, "_blank");
+            }, 500);
+        
+            document.querySelector(".contact-form").reset();
         }
 
         // Intersection Observer for animations
@@ -1661,6 +1763,18 @@
             section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(section);
         });
+
+        function showThankYouPopup() {
+            document
+                .getElementById("thankYouPopup")
+                .classList.add("show");
+        }
+        
+        function closeThankYouPopup() {
+            document
+                .getElementById("thankYouPopup")
+                .classList.remove("show");
+        }
     </script>
 </body>
 </html>
